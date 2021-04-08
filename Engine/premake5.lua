@@ -5,13 +5,20 @@ project "Engine"
 
    IncludeDir = {}
    IncludeDir["GLFW"] = "dependencies/GLFW/include"
+   IncludeDir["glad"] = "dependencies/glad/include"
 
-   files { "**.h", "**.cpp" }
+   files 
+   {
+		"**.h",
+		"**.cpp",
+		"**.c"
+   }
 
    includedirs
 	{
 		"src",
 		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glad}",
 	}
 	
 	libdirs
