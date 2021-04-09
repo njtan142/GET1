@@ -1,17 +1,20 @@
 project "Engine"
    kind "ConsoleApp"
    language "C++"
-   targetdir "bin/%{cfg.buildcfg}"
+   
+   targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+   objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
    IncludeDir = {}
    IncludeDir["GLFW"] = "dependencies/GLFW/include"
    IncludeDir["glad"] = "dependencies/glad/include"
+   IncludeDir["glm"] = "dependencies/glm"
 
    files 
    {
-		"**.h",
-		"**.cpp",
-		"**.c"
+		"src/**.h",
+		"src/**.cpp",
+		"dependencies/glad/src/glad.c"
    }
 
    includedirs
@@ -19,6 +22,7 @@ project "Engine"
 		"src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}",
+  		"%{IncludeDir.glm}"
 	}
 	
 	libdirs
@@ -31,7 +35,14 @@ project "Engine"
 		"glfw3.lib",
 		"opengl32.lib"
 	}
+	postbuildcommands 
+	{
+		"{DELETE} % %{cfg.targetdir}/shader.vs",
+		"{DELETE} % %{cfg.targetdir}/shader.fs",
+		"{COPY} %{prj.dir}src/Shader/shader.vs %{cfg.targetdir}",
+		"{COPY} %{prj.dir}src/Shader/shader.fs %{cfg.targetdir}"
 
+	}
    filter "configurations:Debug"
       defines { "DEBUG" }
       symbols "On"

@@ -4,5 +4,5 @@ workspace "Game Engine Trial1"
 
    configurations { "Debug", "Release" }
    
-
+   outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 include "Engine"
