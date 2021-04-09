@@ -1,8 +1,12 @@
 # Binaries
 **/bin/
 **/bin-int/
-**/obj/
-**/Debug/
+bin-int/
+**.log
+**.tlog
+**.obj
+**.idp
+**.pdb
 
 # Visual Studio files and folder
 .vs/
