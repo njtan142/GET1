@@ -39,14 +39,17 @@ project "Engine"
 	}
 	postbuildcommands 
 	{
-		"{DELETE} % %{cfg.targetdir}/shader.vs",
-		"{COPY} %{prj.dir}src/Shader/shader.vs %{cfg.targetdir}",
+		"{DELETE} % %{cfg.targetdir}/shader.vert",
+		"{COPY} %{prj.dir}src/Shader/shader.vert %{cfg.targetdir}",
 
-		"{DELETE} % %{cfg.targetdir}/shader.fs",
-		"{COPY} %{prj.dir}src/Shader/shader.fs %{cfg.targetdir}",
+		"{DELETE} % %{cfg.targetdir}/shader.frag",
+		"{COPY} %{prj.dir}src/Shader/shader.frag %{cfg.targetdir}",
 
 		"{DELETE} % %{cfg.targetdir}/resources/img/**.jpg",
 		"{COPY} %{prj.dir}resources/**.jpg %{cfg.targetdir}/resources/img/",
+
+		"{DELETE} % %{cfg.targetdir}/resources/img/**.png",
+		"{COPY} %{prj.dir}resources/**.png %{cfg.targetdir}/resources/img/",
 
 
 
